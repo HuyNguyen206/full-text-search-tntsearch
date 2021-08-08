@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('search', 'SiteWideSearchController@search');
+Route::get('search-algolia', 'SiteWideSearchController@searchAlgolia');
+Route::get('search-algolia-ui', 'SiteWideSearchController@searchAlgoliaUI');
+Route::get('search-algolia-multiple-model', 'SiteWideSearchController@searchAlgoliaMultipleModel');
 Route::get('/', function () {
     return view('welcome');
 });

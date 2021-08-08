@@ -9,10 +9,15 @@ class Comment extends Model
 {
     //
     use Searchable;
-    const SEARCHABLE_FIELDS = ['id', 'body'];
+    const SEARCHABLE_FIELDS = ['body'];
 
     public function toSearchableArray()
     {
         return $this->only(self::SEARCHABLE_FIELDS);
+    }
+
+    public function searchableAs()
+    {
+        return 'comments_index';
     }
 }

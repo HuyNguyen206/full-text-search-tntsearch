@@ -8,10 +8,15 @@ class Post extends Model
 {
     use Searchable;
     //
-    const SEARCHABLE_FIELDS = ['id', 'title', 'body'];
+    const SEARCHABLE_FIELDS = ['title', 'body'];
 
     public function toSearchableArray()
     {
         return $this->only(self::SEARCHABLE_FIELDS);
+    }
+
+    public function searchableAs()
+    {
+        return 'posts_index';
     }
 }

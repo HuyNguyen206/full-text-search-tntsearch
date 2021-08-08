@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\SiteSearchResource;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Search\Multiple;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -89,4 +90,26 @@ class SiteWideSearchController extends Controller
         $modelName = \Illuminate\Support\Str::kebab(\Illuminate\Support\Str::camel($modelName));
         return URL::to('/' . $modelName . '/' . $model->id);
     }
+
+    public function searchAlgolia(){
+        $query = \request()->keyword; // <-- Change the query for testing.
+
+        $data = Comment::search($query)->get();
+
+        return $data;
+    }
+
+    public function searchAlgoliaUI(){
+        return view('algolia-search');
+    }
+
+    function searchAlgoliaMultipleModel(){
+        $query = \request()->keyword; // <-- Change the query for testing.
+//         $comments = Comment::search($query)->get();
+//         $posts = Post::search($query)->get();
+//         return collect(compact('comments', 'posts'));
+        return Multiple::search($query)->get();
+    }
+
+
 }
